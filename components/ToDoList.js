@@ -1,24 +1,14 @@
 import React from 'react';
-import { ScrollView, Pressable, View, Text, StyleSheet } from 'react-native';
+import { ScrollView, View, Text, StyleSheet } from 'react-native';
 
-const ToDoList = () => {
+const ToDoList = ({ tasks }) => {
   return (
     <ScrollView>
-      <Pressable>
-        <View style={[styles.task, styles.completed]}>
-          <Text style={styles.taskText}>Household Chores</Text>
+      {tasks.map((task, index) => (
+        <View key={index} style={styles.task}>
+          <Text style={styles.taskText}>{task}</Text>
         </View>
-      </Pressable>
-      <Pressable>
-        <View style={[styles.task]}>
-          <Text style={styles.taskText}>Finish Assignments</Text>
-        </View>
-      </Pressable>
-      <Pressable>
-        <View style={[styles.task, styles.completed]}>
-          <Text style={styles.taskText}>Walk dog</Text>
-        </View>
-      </Pressable>
+      ))}
     </ScrollView>
   );
 };
@@ -28,9 +18,6 @@ const styles = StyleSheet.create({
     padding: 10,
     borderBottomWidth: 1,
     borderColor: '#ccc',
-  },
-  completed: {
-    backgroundColor: '#e0e0e0',
   },
   taskText: {
     fontSize: 16,
